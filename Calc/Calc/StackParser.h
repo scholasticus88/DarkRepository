@@ -1,6 +1,6 @@
 #pragma once
 #include "Lexer.h"
-
+#include "ParseTable.h"
 
 class CStackParser
 {
@@ -11,5 +11,5 @@ public:
 	void Parse(std::string filename);
 
 private:
-	
+	CParseTable m_Rules;
 };

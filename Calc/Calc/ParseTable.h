@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
+#include "Symbols.h"
 
 class CParseTable
 {
@@ -9,5 +10,5 @@ public:
 	~CParseTable();
 
 private:
-	std::stack<Symbols, std::map<Symbols, int>> m_mTable;
+	std::map<Symbols, std::map<Symbols, int>> m_mTable;
 };

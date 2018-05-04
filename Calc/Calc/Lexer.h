@@ -23,8 +23,12 @@ private:
 	long m_lLine;
 	long m_lColumn;
 
+	std::map<std::string, Symbols> m_mKeywods;
+
+	void InitKeywords();
 	void NextSymbol();
 	void SkipWhiteSpaces();
+	Symbols TranslateKeyword(std::string strTmp);
 };
 
 typedef std::shared_ptr<CLexer> LexerPtr;

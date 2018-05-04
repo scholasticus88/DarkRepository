@@ -21,7 +21,14 @@ void CLexer::Init(std::string filename)
 		throw new std::exception("Failed to init lexer.");
 	}
 
+	InitKeywords();
+
 	NextSymbol();
+}
+
+void CLexer::InitKeywords()
+{
+	m_mKeywods["var"] = Symbols::T_VAR;
 }
 
 long CLexer::GetCurrentLine() const
@@ -44,12 +51,47 @@ LexTokenPtr CLexer::GetNextToken()
 	if (m_cSymbol == '+')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::PLUS, lLine, lColumn);
+		return std::make_shared<CLexToken>(Symbols::T_PLUS, lLine, lColumn);
 	}
 	else if (m_cSymbol == '-')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::MINUS, lLine, lColumn);
+		return std::make_shared<CLexToken>(Symbols::T_MINUS, lLine, lColumn);
+	}
+	else if (m_cSymbol == '*')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_MUL, lLine, lColumn);
+	}
+	else if (m_cSymbol == '/')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_DIV, lLine, lColumn);
+	}
+	else if (m_cSymbol == '=')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_ASS, lLine, lColumn);
+	}
+	else if (m_cSymbol == '(')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn);
+	}
+	else if (m_cSymbol == ')')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn);
+	}
+	else if (m_cSymbol == '!')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_FACTOR, lLine, lColumn);
+	}
+	else if (m_cSymbol == ';')
+	{
+		NextSymbol();
+		return std::make_shared<CLexToken>(Symbols::T_SEMICOL, lLine, lColumn);
 	}
 	else if (isdigit(m_cSymbol))
 	{
@@ -58,16 +100,21 @@ LexTokenPtr CLexer::GetNextToken()
 			NextSymbol();
 		} while (isdigit(m_cSymbol));
 
-		return std::make_shared<CLexToken>(Symbols::INTEGER, lLine, lColumn);
+		return std::make_shared<CLexToken>(Symbols::T_INTEGER, lLine, lColumn);
 	}
 	else if (isalpha(m_cSymbol))
 	{
+		std::string strTmp;
+
 		do
 		{
+			strTmp += m_cSymbol;
 			NextSymbol();
 		} while (isalnum(m_cSymbol));
 
-		return std::make_shared<CLexToken>(Symbols::IDENT, lLine, lColumn);
+		Symbols symbol = TranslateKeyword(strTmp);
+
+		return std::make_shared<CLexToken>(symbol, lLine, lColumn);
 	}
 	else if (m_cSymbol == -1)
 	{
@@ -105,4 +152,17 @@ void CLexer::SkipWhiteSpaces()
 	{
 		NextSymbol();
 	}
+}
+
+Symbols CLexer::TranslateKeyword(std::string strTmp)
+{
+	std::transform(strTmp.begin(), strTmp.end(), strTmp.begin(), ::tolower);
+
+	std::map<std::string, Symbols>::iterator it = m_mKeywods.find(strTmp);
+	if (it != m_mKeywods.end())
+	{
+		return it->second;
+	}
+
+	return Symbols::T_IDENT;
 }

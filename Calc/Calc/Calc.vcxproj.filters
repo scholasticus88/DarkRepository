@@ -45,6 +45,9 @@
     <ClInclude Include="Symbols.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ParseTable.h">
+      <Filter>Header Files\StackParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="StackParser.cpp">
+      <Filter>Source Files\StackParser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseTable.cpp">
       <Filter>Source Files\StackParser</Filter>
     </ClCompile>
   </ItemGroup>
