@@ -3,12 +3,14 @@ grammar Calc;
 
 expr:				multipl expr_rest;
 
-expr_rest:			PLUS_MINUS multipl expr_rest |
+expr_rest:			PLUS multipl expr_rest |
+					MINUS multipl expr_rest |
 					;
 
 multipl:			INTEGER multipl_rest;
 
-multipl_rest:		MUL_DIV INTEGER multipl_rest |
+multipl_rest:		MUL INTEGER multipl_rest |
+					DIV INTEGER multipl_rest |
 					;
 
 
@@ -17,9 +19,11 @@ INTEGER: 			INTEGRAL_PART;
 
 DOUBLE:				INTEGRAL_PART DOT DECIMAL_PART;
 
-PLUS_MINUS:			'+' | '-';
+PLUS:				'+';
+MINUS:				'-';	
 
-MUL_DIV:			'*' | '/';
+MUL:				'*';
+DIV:				'/';	
 
 
 
