@@ -34,6 +34,7 @@ multipl_rest:		MUL multiplicant multipl_rest |
 					;
 
 multiplicant:		L_BRACK expr P_BRACK factor |
+					IDENT factor |
 					INTEGER factor |
 					DOUBLE;
 
