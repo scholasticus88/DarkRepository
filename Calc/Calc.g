@@ -7,7 +7,7 @@ command_list:		command command_list |
 					
 command:			declaration |
 					assign |
-					expr |
+					function |
 					empty;
 
 // declaration command
@@ -42,6 +42,8 @@ multiplicant:		L_BRACK expr P_BRACK factor |
 factor:				FACTOR |
 					;
 
+function:			WRITE L_BRACK IDENT P_BRACK |
+					WRITELN L_BRACK IDENT P_BRACK;
 
 
 PLUS:				'+';
@@ -60,6 +62,10 @@ SEMICOL:			';';
 FACTOR:				'!';
 
 VAR:				'var';
+
+WRITE:				'write';
+
+WRITELN:			'writeln';
 
 INTEGER: 			INTEGRAL_PART;
 
