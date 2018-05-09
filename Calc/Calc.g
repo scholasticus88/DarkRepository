@@ -10,7 +10,8 @@ command:			declaration |
 					empty;
 
 // declaration command
-declaration:		VAR IDENT declaration_rest;
+declaration:		VAR IDENT declaration_rest |
+					;
 
 declaration_rest:	ASS expr SEMICOL;
 
