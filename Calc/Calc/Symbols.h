@@ -31,6 +31,8 @@ enum Symbols
 	T_LBRACK = 1009,
 	T_RBRACK = 1010,
 	T_FACTOR = 1011,
+	T_WRITE = 1012,
+	T_WRITELN = 1013,
 
 
 	// keywords

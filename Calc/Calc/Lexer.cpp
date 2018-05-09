@@ -29,6 +29,8 @@ void CLexer::Init(std::string filename)
 void CLexer::InitKeywords()
 {
 	m_mKeywods["var"] = Symbols::T_VAR;
+	m_mKeywods["write"] = Symbols::T_WRITE;
+	m_mKeywods["writeln"] = Symbols::T_WRITELN;
 }
 
 long CLexer::GetCurrentLine() const
