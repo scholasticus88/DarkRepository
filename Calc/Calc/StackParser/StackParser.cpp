@@ -19,7 +19,7 @@ void CStackParser::Parse(std::string filename)
 
 	std::stack<Symbols> stack;
 	stack.push(Symbols::T_END);
-	stack.push(Symbols::NT_EXPR);
+	stack.push(Symbols::NT_CODE);
 
 	while (stack.size() > 0)
 	{
@@ -28,12 +28,15 @@ void CStackParser::Parse(std::string filename)
 
 		if (symbol == token->GetType())
 		{
+			std::cout << "      Consumed: " << symbol << std::endl;
+
 			stack.pop();
 			pLexer->GetNextToken();
 		}
 		else
 		{
 			int iRule = m_Rules(symbol, token->GetType());
+			std::cout << "Rule: " << iRule << std::endl;
 
 			switch (iRule)
 			{
@@ -110,7 +113,7 @@ void CStackParser::Parse(std::string filename)
 				break;
 			case 16:
 				stack.pop();
-				stack.push(Symbols::NT_EXPR_REST);
+				stack.push(Symbols::NT_MULTIPLE_REST);
 				stack.push(Symbols::NT_MULTIPLICANT);
 				break;
 			case 17:
@@ -165,6 +168,7 @@ void CStackParser::Parse(std::string filename)
 				stack.push(Symbols::T_WRITELN);
 				break;
 			default:
+				throw new std::exception("Unknown rule");
 				break;
 			}
 		}

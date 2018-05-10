@@ -25,6 +25,7 @@ void CLexer::Init(std::string filename)
 	InitKeywords();
 
 	NextSymbol();
+	GetNextToken();
 }
 
 void CLexer::InitKeywords()
@@ -84,7 +85,7 @@ ILexerTokenPtr CLexer::GetNextToken()
 	else if (m_cSymbol == ')')
 	{
 		NextSymbol();
-		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn));
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_RBRACK, lLine, lColumn));
 	}
 	else if (m_cSymbol == '!')
 	{

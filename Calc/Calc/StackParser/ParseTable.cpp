@@ -3,7 +3,7 @@
 
 CParseTable::CParseTable()
 {
-	
+	Init();
 }
 
 CParseTable::~CParseTable()
@@ -70,7 +70,7 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_MUL] = 25;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_DIV] = 25;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_SEMICOL] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_VAR] = 24;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_FACTOR] = 24;
 
 	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 26;
 	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = 27;
