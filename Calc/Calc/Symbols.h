@@ -7,8 +7,10 @@ enum Symbols
 	NT_COMMAND_LIST = 101,
 	NT_COMMAND = 102,
 	NT_DECLARATION = 103,
-	NT_ASSIGN = 104,
-	NT_EMPTY = 105,
+	NT_DECLARATION_REST = 104,
+	NT_ASSIGN = 105,
+	NT_EMPTY = 106,
+	NT_FUNCTION = 107,
 
 	NT_EXPR = 500,
 	NT_EXPR_REST = 501,
@@ -38,7 +40,6 @@ enum Symbols
 	// keywords
 	T_VAR = 1500,
 
-
 	// end of file
-	END = 9999,
+	T_END = 9999,
 };

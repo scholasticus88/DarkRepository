@@ -18,7 +18,7 @@ void CStackParser::Parse(std::string filename)
 	pLexer->Init(filename);
 
 	std::stack<Symbols> stack;
-	stack.push(Symbols::END);
+	stack.push(Symbols::T_END);
 	stack.push(Symbols::NT_EXPR);
 
 	
