@@ -2,16 +2,17 @@
 
 #include "stdafx.h"
 #include "Symbols.h"
+#include "ILexerToken.h"
 
-class CLexToken
+class CLexToken : public ILexerToken
 {
 public:
 	CLexToken(Symbols type, long line, long column);
 	~CLexToken();
 
-	Symbols GetType() const;
-	long GetLine() const;
-	long GetColumn() const;
+	virtual Symbols GetType() const override;
+	virtual long GetLine() const override;
+	virtual long GetColumn() const override;
 
 private:
 	Symbols m_type;

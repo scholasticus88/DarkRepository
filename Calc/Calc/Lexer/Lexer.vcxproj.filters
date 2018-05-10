@@ -19,17 +19,8 @@
     <Filter Include="Source Files\Lexer">
       <UniqueIdentifier>{88350950-7847-477b-9abe-28b0a49e99f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\StackParser">
-      <UniqueIdentifier>{13883507-6cd0-4a71-9854-e323c0c55da4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\StackParser">
-      <UniqueIdentifier>{f8293ca1-ac2d-4850-a2e3-3950af852584}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,34 +30,28 @@
     <ClInclude Include="LexToken.h">
       <Filter>Header Files\Lexer</Filter>
     </ClInclude>
-    <ClInclude Include="StackParser.h">
-      <Filter>Header Files\StackParser</Filter>
-    </ClInclude>
-    <ClInclude Include="Symbols.h">
+    <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParseTable.h">
-      <Filter>Header Files\StackParser</Filter>
+    <ClInclude Include="Export.h">
+      <Filter>Header Files\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ILexer.h">
+      <Filter>Header Files\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ILexerToken.h">
+      <Filter>Header Files\Lexer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Calc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Lexer.cpp">
       <Filter>Source Files\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="LexToken.cpp">
       <Filter>Source Files\Lexer</Filter>
     </ClCompile>
-    <ClCompile Include="StackParser.cpp">
-      <Filter>Source Files\StackParser</Filter>
-    </ClCompile>
-    <ClCompile Include="ParseTable.cpp">
-      <Filter>Source Files\StackParser</Filter>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

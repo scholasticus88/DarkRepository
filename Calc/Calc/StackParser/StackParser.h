@@ -1,6 +1,6 @@
 #pragma once
-#include "Lexer.h"
 #include "ParseTable.h"
+#include "ILexer.h"
 
 class CStackParser
 {

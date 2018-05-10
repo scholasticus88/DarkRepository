@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Lexer.h"
+#include "LexToken.h"
 
 CLexer::CLexer():
 	m_lLine(0),
@@ -43,7 +44,7 @@ long CLexer::GetCurrentColumn() const
 	return m_lColumn;
 }
 
-LexTokenPtr CLexer::GetNextToken()
+ILexerTokenPtr CLexer::GetNextToken()
 {
 	SkipWhiteSpaces();
 
@@ -120,7 +121,7 @@ LexTokenPtr CLexer::GetNextToken()
 	}
 	else if (m_cSymbol == -1)
 	{
-		return nullptr;
+		return std::make_shared<CLexToken>(Symbols::T_END, lLine, lColumn);;
 	}
 
 	throw new std::exception("Unknown symbol");
