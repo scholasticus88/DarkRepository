@@ -8,10 +8,15 @@ class LEXER_DLL_EXPORT ILexer
 public:
 	virtual void Init(std::string filename) = 0;
 	virtual ILexerTokenPtr GetNextToken() = 0;
+	virtual ILexerTokenPtr GetCurrentToken() = 0;
 
 	virtual long GetCurrentLine() const = 0;
 	virtual long GetCurrentColumn() const = 0;
 
+	ILexerTokenPtr operator*()
+	{
+		return GetCurrentToken();
+	}
 };
 
 typedef std::shared_ptr<ILexer> ILexerPtr;

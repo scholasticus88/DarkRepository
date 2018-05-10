@@ -11,6 +11,7 @@ public:
 	CLexer();
 	virtual void Init(std::string filename) override;
 	virtual ILexerTokenPtr GetNextToken() override;
+	virtual ILexerTokenPtr GetCurrentToken() override;
 
 	virtual long GetCurrentLine() const override;
 	virtual long GetCurrentColumn() const override;
@@ -18,6 +19,8 @@ public:
 private:
 	std::ifstream m_ifs;
 	std::string m_filename;
+
+	ILexerTokenPtr m_pCurrentToken;
 	char m_cSymbol;
 
 	long m_lLine;

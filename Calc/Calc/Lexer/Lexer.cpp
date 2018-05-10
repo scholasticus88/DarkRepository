@@ -54,47 +54,47 @@ ILexerTokenPtr CLexer::GetNextToken()
 	if (m_cSymbol == '+')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_PLUS, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_PLUS, lLine, lColumn));
 	}
 	else if (m_cSymbol == '-')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_MINUS, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_MINUS, lLine, lColumn));
 	}
 	else if (m_cSymbol == '*')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_MUL, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_MUL, lLine, lColumn));
 	}
 	else if (m_cSymbol == '/')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_DIV, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_DIV, lLine, lColumn));
 	}
 	else if (m_cSymbol == '=')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_ASS, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_ASS, lLine, lColumn));
 	}
 	else if (m_cSymbol == '(')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn));
 	}
 	else if (m_cSymbol == ')')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_LBRACK, lLine, lColumn));
 	}
 	else if (m_cSymbol == '!')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_FACTOR, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_FACTOR, lLine, lColumn));
 	}
 	else if (m_cSymbol == ';')
 	{
 		NextSymbol();
-		return std::make_shared<CLexToken>(Symbols::T_SEMICOL, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_SEMICOL, lLine, lColumn));
 	}
 	else if (isdigit(m_cSymbol))
 	{
@@ -103,7 +103,7 @@ ILexerTokenPtr CLexer::GetNextToken()
 			NextSymbol();
 		} while (isdigit(m_cSymbol));
 
-		return std::make_shared<CLexToken>(Symbols::T_INTEGER, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_INTEGER, lLine, lColumn));
 	}
 	else if (isalpha(m_cSymbol))
 	{
@@ -117,14 +117,19 @@ ILexerTokenPtr CLexer::GetNextToken()
 
 		Symbols symbol = TranslateKeyword(strTmp);
 
-		return std::make_shared<CLexToken>(symbol, lLine, lColumn);
+		return (m_pCurrentToken = std::make_shared<CLexToken>(symbol, lLine, lColumn));
 	}
 	else if (m_cSymbol == -1)
 	{
-		return std::make_shared<CLexToken>(Symbols::T_END, lLine, lColumn);;
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_END, lLine, lColumn));
 	}
 
 	throw new std::exception("Unknown symbol");
+}
+
+ILexerTokenPtr CLexer::GetCurrentToken()
+{
+	return m_pCurrentToken;
 }
 
 void CLexer::NextSymbol()
