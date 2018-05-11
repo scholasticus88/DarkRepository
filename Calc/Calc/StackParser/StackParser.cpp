@@ -28,15 +28,12 @@ void CStackParser::Parse(std::string filename)
 
 		if (symbol == token->GetType())
 		{
-			std::cout << "      Consumed: " << symbol << std::endl;
-
 			stack.pop();
 			pLexer->GetNextToken();
 		}
 		else
 		{
 			int iRule = m_Rules(symbol, token->GetType());
-			std::cout << "Rule: " << iRule << std::endl;
 
 			switch (iRule)
 			{
@@ -173,19 +170,4 @@ void CStackParser::Parse(std::string filename)
 			}
 		}
 	}
-
-
-
-	/*
-	ILexerTokenPtr token = pLexer->GetNextToken();
-	while (token != nullptr)
-	{
-		std::cout << "[" << token->GetLine() << ", " << token->GetColumn() << "]: " << token->GetType() << std::endl;
-
-		if (token->GetType() == Symbols::T_END)
-			break;
-
-		token = pLexer->GetNextToken();
-	}
-	*/
 }

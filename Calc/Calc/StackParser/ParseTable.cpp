@@ -48,6 +48,7 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_PLUS] = 13;
 	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_MINUS] = 14;
 	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_SEMICOL] = 15;
+	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_RBRACK] = 15;
 
 	m_mTable[Symbols::NT_MULTIPL][Symbols::T_LBRACK] = 16;
 	m_mTable[Symbols::NT_MULTIPL][Symbols::T_INTEGER] = 16;
@@ -59,6 +60,7 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_PLUS] = 19;
 	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_MINUS] = 19;
 	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_SEMICOL] = 19;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_RBRACK] = 19;
 	
 	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_LBRACK] = 20;
 	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_INTEGER] = 22;
@@ -70,6 +72,7 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_MUL] = 25;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_DIV] = 25;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_SEMICOL] = 25;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_RBRACK] = 25;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_FACTOR] = 24;
 
 	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 26;
