@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "StackParser.h"
+#include "LexerException.h"
+#include "ParserException.h"
 
 
 CStackParser::CStackParser()
@@ -28,8 +30,18 @@ void CStackParser::Parse(std::string filename)
 
 		if (symbol == token->GetType())
 		{
-			stack.pop();
-			pLexer->GetNextToken();
+			try
+			{
+				stack.pop();
+				pLexer->Next();
+			}
+			catch (CBaseException* e)
+			{
+				CParserException* e2 = new CParserException(e->GetMessage(), e->GetLine(), e->GetColumn());
+				delete e;
+				e = nullptr;
+				throw e2;
+			}
 		}
 		else
 		{

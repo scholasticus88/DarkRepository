@@ -109,7 +109,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_UNICODE;UNICODE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -153,7 +153,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_UNICODE;UNICODE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -171,6 +171,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ParserException.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ParseTable.h" />
     <ClInclude Include="StackParser.h" />
@@ -178,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Calc.cpp" />
+    <ClCompile Include="ParserException.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="ParseTable.cpp" />
     <ClCompile Include="StackParser.cpp" />

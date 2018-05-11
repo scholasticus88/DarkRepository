@@ -16,9 +16,6 @@
     <Filter Include="Header Files\Lexer">
       <UniqueIdentifier>{f806728c-da73-4687-975b-43809247f00e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Lexer">
-      <UniqueIdentifier>{88350950-7847-477b-9abe-28b0a49e99f1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -36,21 +33,18 @@
     <ClInclude Include="Export.h">
       <Filter>Header Files\Lexer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\ILexer.h">
-      <Filter>Header Files\Lexer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Include\ILexerToken.h">
-      <Filter>Header Files\Lexer</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Lexer.cpp">
-      <Filter>Source Files\Lexer</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LexToken.cpp">
-      <Filter>Source Files\Lexer</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="LexerException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

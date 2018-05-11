@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Lexer.h"
 #include "LexToken.h"
+#include "LexerException.h"
 
 CLexer::CLexer():
 	m_lLine(0),
@@ -19,13 +20,13 @@ void CLexer::Init(std::string filename)
 
 	if (m_ifs.fail())
 	{
-		throw new std::exception("Failed to init lexer.");
+		throw new CLexerException("Failed to init lexer.", m_lLine, m_lColumn);
 	}
 
 	InitKeywords();
 
 	NextSymbol();
-	GetNextToken();
+	Next();
 }
 
 void CLexer::InitKeywords()
@@ -45,7 +46,7 @@ long CLexer::GetCurrentColumn() const
 	return m_lColumn;
 }
 
-ILexerTokenPtr CLexer::GetNextToken()
+ILexerTokenPtr CLexer::Next()
 {
 	SkipWhiteSpaces();
 
@@ -125,7 +126,9 @@ ILexerTokenPtr CLexer::GetNextToken()
 		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_END, lLine, lColumn));
 	}
 
-	throw new std::exception("Unknown symbol");
+	std::stringstream ss;
+	ss << "Unexpected input character '" << m_cSymbol << "'";
+	throw new CLexerException(ss.str().c_str(), m_lLine, m_lColumn);
 }
 
 ILexerTokenPtr CLexer::GetCurrentToken()

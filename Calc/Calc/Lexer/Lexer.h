@@ -10,7 +10,7 @@ class CLexer : public ILexer
 public:
 	CLexer();
 	virtual void Init(std::string filename) override;
-	virtual ILexerTokenPtr GetNextToken() override;
+	virtual ILexerTokenPtr Next() override;
 	virtual ILexerTokenPtr GetCurrentToken() override;
 
 	virtual long GetCurrentLine() const override;

@@ -108,7 +108,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>LEXER_DLL;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LEXER_DLL;_CRT_SECURE_NO_WARNINGS;_UNICODE;UNICODE;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -148,7 +148,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>LEXER_DLL;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LEXER_DLL;_CRT_SECURE_NO_WARNINGS;_UNICODE;UNICODE;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Include;</AdditionalIncludeDirectories>
     </ClCompile>
@@ -164,8 +164,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Include\ILexer.h" />
-    <ClInclude Include="..\Include\ILexerToken.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexToken.h" />
@@ -174,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lexer.cpp" />
+    <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexToken.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
