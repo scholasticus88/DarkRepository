@@ -12,3 +12,8 @@ CLexerException::~CLexerException()
 {
 	
 }
+
+CBaseException::ExceptionType CLexerException::GetType() const
+{
+	return ExceptionType::LexerException;
+}

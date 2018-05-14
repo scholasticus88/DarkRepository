@@ -21,9 +21,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Export.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

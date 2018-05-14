@@ -20,7 +20,7 @@ void CLexer::Init(std::string filename)
 
 	if (m_ifs.fail())
 	{
-		throw new CLexerException("Failed to init lexer.", m_lLine, m_lColumn);
+		throw new CLexerException("The input file doesn't exist or cannot be read.", m_lLine, m_lColumn);
 	}
 
 	InitKeywords();

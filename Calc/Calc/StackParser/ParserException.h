@@ -8,6 +8,8 @@ public:
 	CParserException(const char* msg, long line, long column);
 	virtual ~CParserException();
 
+	virtual CBaseException::ExceptionType GetType() const override;
+
 private:
 
 

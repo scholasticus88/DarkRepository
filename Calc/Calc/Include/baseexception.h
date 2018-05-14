@@ -25,9 +25,16 @@ public:
 		}
 	}
 
+	enum ExceptionType
+	{
+		LexerException = 1,
+		ParserException = 2
+	};
+
 	virtual char* GetMessage() const { return m_pMsg; };
 	virtual long  GetLine() const { return m_lLine; };
 	virtual long  GetColumn() const { return m_lColumn; };
+	virtual ExceptionType GetType() const = 0;
 
 private:
 	char* m_pMsg;

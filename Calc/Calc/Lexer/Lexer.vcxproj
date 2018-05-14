@@ -164,7 +164,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Export.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexToken.h" />
     <ClInclude Include="stdafx.h" />

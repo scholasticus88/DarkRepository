@@ -177,7 +177,9 @@ void CStackParser::Parse(std::string filename)
 				stack.push(Symbols::T_WRITELN);
 				break;
 			default:
-				throw new std::exception("Unknown rule");
+				std::stringstream ss;
+				ss << "Unexpected symbol '" << symbol << "' on position " << token->GetLine() << ":" << token->GetColumn();
+				throw CParserException(ss.str().c_str(), token->GetLine(), token->GetColumn());
 				break;
 			}
 		}

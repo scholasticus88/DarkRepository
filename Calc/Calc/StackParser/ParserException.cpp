@@ -11,3 +11,8 @@ CParserException::~CParserException()
 {
 
 }
+
+CBaseException::ExceptionType CParserException::GetType() const
+{
+	return ExceptionType::ParserException;
+}
