@@ -183,3 +183,8 @@ void CStackParser::Parse(std::string filename)
 		}
 	}
 }
+
+IParserPtr PARSER_DLL_EXPORT CreateStackParser()
+{
+	return std::make_shared<CStackParser>();
+}
