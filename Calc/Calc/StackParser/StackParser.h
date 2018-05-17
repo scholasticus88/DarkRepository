@@ -11,7 +11,7 @@ public:
 	CStackParser();
 	~CStackParser();
 
-	virtual void Parse(std::string filename) override;
+	virtual void Parse(const std::string& filename) override;
 
 private:
 	CParseTable m_Rules;

@@ -14,7 +14,7 @@ CStackParser::~CStackParser()
 
 }
 
-void CStackParser::Parse(std::string filename)
+void CStackParser::Parse(const std::string& filename)
 {
 	ILexerPtr pLexer = CreateLexer();
 	pLexer->Init(filename);
