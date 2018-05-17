@@ -31,6 +31,15 @@ void CRecursiveParser::Accept(Symbols symbol)
 	throw CParserException("Unexpected token...", GetLine(), GetColumn());
 }
 
+bool CRecursiveParser::Expect(const std::vector<Symbols>& vs)
+{
+	ILexerTokenPtr pToken = Symbol();
+
+	std::vector<Symbols>::const_iterator it = std::find(vs.begin(), vs.end(), pToken->GetType());
+
+	return (it != std::end(vs));
+}
+
 bool CRecursiveParser::Expect(Symbols symbol)
 {
 	ILexerTokenPtr pToken = Symbol();
@@ -47,6 +56,24 @@ ILexerTokenPtr CRecursiveParser::Symbol()
 	return pToken;
 }
 
+void CRecursiveParser::Parse_Code()
+{
+	Parse_CommandList();
+}
+
+void CRecursiveParser::Parse_CommandList()
+{
+	while (Expect({Symbols::T_IDENT, Symbols::T_SEMICOL, Symbols::T_WRITE, Symbols::T_WRITELN, Symbols::T_VAR}))
+	{
+		Parse_Command();
+	}
+
+	if (!Expect(Symbols::T_END))
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
 void CRecursiveParser::Parse_Command()
 {
 	if (Expect(Symbols::T_VAR))
@@ -61,9 +88,13 @@ void CRecursiveParser::Parse_Command()
 	{
 		Parse_EmptyCommand();
 	}
+	else if (Expect(Symbols::T_IDENT))
+	{
+		Parse_Assign();
+	}
 	else
 	{
-		// exc
+		throw CParserException("", GetLine(), GetColumn());
 	}
 }
 
@@ -73,6 +104,16 @@ void CRecursiveParser::Parse_Declaration()
 	Accept(Symbols::T_IDENT);
 
 	Parse_Declaration_Rest();
+
+	Accept(Symbols::T_SEMICOL);
+}
+
+void CRecursiveParser::Parse_Assign()
+{
+	Accept(Symbols::T_IDENT);
+	Accept(Symbols::T_ASS);
+
+	Parse_Expression();
 
 	Accept(Symbols::T_SEMICOL);
 }
