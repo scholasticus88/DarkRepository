@@ -10,6 +10,8 @@ public:
 	CLexToken(Symbols type, long line, long column);
 	~CLexToken();
 
+	bool operator==(Symbols symbol) const;
+
 	virtual Symbols GetType() const override;
 	virtual long GetLine() const override;
 	virtual long GetColumn() const override;

@@ -10,6 +10,11 @@ public:
 	virtual long GetLine() const = 0;
 	virtual long GetColumn() const = 0;
 
+	bool operator==(Symbols s)
+	{
+		return (GetType() == s);
+	}
+
 };
 
 typedef std::shared_ptr<ILexerToken> ILexerTokenPtr;

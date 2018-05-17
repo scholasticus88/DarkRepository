@@ -28,3 +28,8 @@ long CLexToken::GetColumn() const
 {
 	return m_lColumn;
 }
+
+bool CLexToken::operator==(Symbols symbol) const
+{
+	return (m_type == symbol);
+}
