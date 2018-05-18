@@ -28,6 +28,11 @@ private:
 	void Parse_Declaration();
 	void Parse_Declaration_Rest();
 	void Parse_Expression();
+	void Parse_Multiple();
+	void Parse_ExpressionRest();
+	void Parse_Multiplicant();
+	void Parse_MultipleRest();
+	void Parse_Factor();
 	void Parse_Function();
 	void Parse_EmptyCommand();
 

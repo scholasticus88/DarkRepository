@@ -16,8 +16,7 @@ void CRecursiveParser::Parse(const std::string& filename)
 {
 	m_pLexer->Init(filename);
 
-
-
+	Parse_Code();
 }
 
 void CRecursiveParser::Accept(Symbols symbol)
@@ -130,7 +129,122 @@ void CRecursiveParser::Parse_Declaration_Rest()
 
 void CRecursiveParser::Parse_Expression()
 {
-	
+	if (Expect({Symbols::T_LBRACK, Symbols::T_IDENT, Symbols::T_INTEGER, Symbols::T_DOUBLE}))
+	{
+		Parse_Multiple();
+
+		Parse_ExpressionRest();
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_ExpressionRest()
+{
+	if (Expect(Symbols::T_PLUS))
+	{
+		Accept(Symbols::T_PLUS);
+		Parse_Multiple();
+		Parse_ExpressionRest();
+	}
+	else if (Expect(Symbols::T_MINUS))
+	{
+		Accept(Symbols::T_MINUS);
+		Parse_Multiple();
+		Parse_ExpressionRest();
+	}
+	else if (Expect({Symbols::T_SEMICOL, Symbols::T_RBRACK}))
+	{
+		// rule #15
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_Multiple()
+{
+	if (Expect({Symbols::T_LBRACK, Symbols::T_IDENT, Symbols::T_INTEGER, Symbols::T_DOUBLE}))
+	{
+		Parse_Multiplicant();
+		Parse_MultipleRest();
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_MultipleRest()
+{
+	if (Expect(Symbols::T_MUL))
+	{
+		Accept(Symbols::T_MUL);
+		Parse_Multiplicant();
+		Parse_MultipleRest();
+	}
+	else if (Expect(Symbols::T_DIV))
+	{
+		Accept(Symbols::T_DIV);
+		Parse_Multiplicant();
+		Parse_MultipleRest();
+	}
+	else if (Expect({Symbols::T_RBRACK, Symbols::T_PLUS, Symbols::T_MINUS, Symbols::T_SEMICOL}))
+	{
+		// rule #19
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_Multiplicant()
+{
+	if (Expect(Symbols::T_LBRACK))
+	{
+		Accept(Symbols::T_LBRACK);
+		Parse_Expression();
+		Accept(Symbols::T_RBRACK);
+		Parse_Factor();
+	}
+	else if (Expect(Symbols::T_IDENT))
+	{
+		Accept(Symbols::T_IDENT);
+		Parse_Factor();
+	}
+	else if (Expect(Symbols::T_INTEGER))
+	{
+		Accept(Symbols::T_INTEGER);
+		Parse_Factor();
+	}
+	else if (Expect(Symbols::T_DOUBLE))
+	{
+		Accept(Symbols::T_DOUBLE);
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_Factor()
+{
+	if (Expect(Symbols::T_FACTOR))
+	{
+		Accept(Symbols::T_FACTOR);
+	}
+	else if (Expect({Symbols::T_MUL, Symbols::T_DIV, Symbols::T_PLUS, Symbols::T_MINUS, Symbols::T_SEMICOL, Symbols::T_RBRACK}))
+	{
+		// rule #25
+	}
+	else
+	{
+		throw CParserException("", GetLine(), GetColumn());
+	}
 }
 
 void CRecursiveParser::Parse_Function()
