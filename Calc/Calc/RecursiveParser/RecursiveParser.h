@@ -20,6 +20,7 @@ private:
 	bool Expect(Symbols symbol);
 	void Accept(Symbols symbol);
 	ILexerTokenPtr Symbol();
+	std::string SymbolAsString();
 
 	void Parse_Code();
 	void Parse_CommandList();

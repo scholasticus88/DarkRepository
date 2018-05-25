@@ -26,8 +26,12 @@ void CRecursiveParser::Accept(Symbols symbol)
 	{
 		m_pLexer->Next();
 	}
-
-	throw CParserException("Unexpected token...", GetLine(), GetColumn());
+	else
+	{
+		std::stringstream ss;
+		ss << "Unexpected token [" << SymbolAsString() << "]";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
+	}	
 }
 
 bool CRecursiveParser::Expect(const std::vector<Symbols>& vs)
@@ -55,6 +59,16 @@ ILexerTokenPtr CRecursiveParser::Symbol()
 	return pToken;
 }
 
+std::string CRecursiveParser::SymbolAsString()
+{
+	ILexerTokenPtr pToken = m_pLexer->GetCurrentToken();
+
+	if (pToken == nullptr)
+		throw CParserException("No token available.", GetLine(), GetColumn());
+
+	return std::string(pToken->GetString());
+}
+
 void CRecursiveParser::Parse_Code()
 {
 	Parse_CommandList();
@@ -69,7 +83,9 @@ void CRecursiveParser::Parse_CommandList()
 
 	if (!Expect(Symbols::T_END))
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing commandlist.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -93,7 +109,9 @@ void CRecursiveParser::Parse_Command()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing command.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -137,7 +155,9 @@ void CRecursiveParser::Parse_Expression()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing expression.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -161,7 +181,9 @@ void CRecursiveParser::Parse_ExpressionRest()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing expression_rest.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -174,7 +196,9 @@ void CRecursiveParser::Parse_Multiple()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing multiple.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -198,7 +222,9 @@ void CRecursiveParser::Parse_MultipleRest()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing multiple_rest.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -227,7 +253,9 @@ void CRecursiveParser::Parse_Multiplicant()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing multiplicant.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -243,7 +271,9 @@ void CRecursiveParser::Parse_Factor()
 	}
 	else
 	{
-		throw CParserException("", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing factor.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 
@@ -259,7 +289,9 @@ void CRecursiveParser::Parse_Function()
 	}
 	else
 	{
-		throw CParserException("Unexpected function", GetLine(), GetColumn());
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing function.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
 	}
 }
 

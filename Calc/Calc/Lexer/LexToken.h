@@ -15,6 +15,7 @@ public:
 	virtual Symbols GetType() const override;
 	virtual long GetLine() const override;
 	virtual long GetColumn() const override;
+	virtual const char* GetString() const override;
 
 private:
 	Symbols m_type;

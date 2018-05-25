@@ -29,6 +29,11 @@ long CLexToken::GetColumn() const
 	return m_lColumn;
 }
 
+const char* CLexToken::GetString() const
+{
+	return std::to_string(m_type).c_str();
+}
+
 bool CLexToken::operator==(Symbols symbol) const
 {
 	return (m_type == symbol);

@@ -9,10 +9,16 @@ public:
 	virtual Symbols GetType() const = 0;
 	virtual long GetLine() const = 0;
 	virtual long GetColumn() const = 0;
+	virtual const char* GetString() const = 0;
 
 	bool operator==(Symbols s)
 	{
 		return (GetType() == s);
+	}
+
+	operator const char*()
+	{
+		return GetString();
 	}
 
 };
