@@ -11,9 +11,10 @@ command:			declaration |
 					empty;
 
 // declaration command
-declaration:		data_type IDENT declaration_rest;
+declaration:		data_type IDENT declaration_rest SEMICOL;
 
-declaration_rest:	ASS expr SEMICOL;
+declaration_rest:	ASS expr |
+					;
 
 // assignment command
 assign:				IDENT ASS expr SEMICOL;
