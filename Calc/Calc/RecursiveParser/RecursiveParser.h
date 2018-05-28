@@ -35,6 +35,7 @@ private:
 	void Parse_MultipleRest();
 	void Parse_Factor();
 	void Parse_Function();
+	void Parse_DataType();
 	void Parse_EmptyCommand();
 
 	long GetLine() const;

@@ -31,7 +31,11 @@ void CLexer::Init(std::string filename)
 
 void CLexer::InitKeywords()
 {
-	m_mKeywods["var"] = Symbols::T_VAR;
+	m_mKeywods["int"] = Symbols::T_KW_INT;
+	m_mKeywods["double"] = Symbols::T_KW_DOUBLE;
+	m_mKeywods["string"] = Symbols::T_KW_STRING;
+	m_mKeywods["bool"] = Symbols::T_KW_BOOL;
+	m_mKeywods["auto"] = Symbols::T_KW_AUTO;
 	m_mKeywods["write"] = Symbols::T_WRITE;
 	m_mKeywods["writeln"] = Symbols::T_WRITELN;
 }

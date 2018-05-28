@@ -11,7 +11,7 @@ command:			declaration |
 					empty;
 
 // declaration command
-declaration:		VAR IDENT declaration_rest;
+declaration:		data_type IDENT declaration_rest;
 
 declaration_rest:	ASS expr SEMICOL;
 
@@ -44,6 +44,12 @@ factor:				FACTOR |
 
 function:			WRITE L_BRACK IDENT P_BRACK |
 					WRITELN L_BRACK IDENT P_BRACK;
+					
+data_type:			KW_STRING |
+					KW_INT |
+					KW_DOUBLE |
+					KW_BOOL |
+					KW_AUTO;	
 
 
 PLUS:				'+';
@@ -61,7 +67,15 @@ SEMICOL:			';';
 
 FACTOR:				'!';
 
-VAR:				'var';
+KW_STRING:			'string';
+
+KW_INT:				'int';
+
+KW_DOUBLE:			'double';
+
+KW_BOOL:			'bool';
+
+KW_AUTO:			'auto';
 
 WRITE:				'write';
 

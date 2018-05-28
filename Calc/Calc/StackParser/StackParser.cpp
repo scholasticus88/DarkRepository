@@ -81,7 +81,7 @@ void CStackParser::Parse(const std::string& filename)
 				stack.pop();
 				stack.push(Symbols::NT_DECLARATION_REST);
 				stack.push(Symbols::T_IDENT);
-				stack.push(Symbols::T_VAR);
+				stack.push(Symbols::NT_DATA_TYPE);
 				break;
 			case 9:
 				stack.pop();
@@ -175,6 +175,26 @@ void CStackParser::Parse(const std::string& filename)
 			case 27:
 				stack.pop();
 				stack.push(Symbols::T_WRITELN);
+				break;
+			case 100:
+				stack.pop();
+				stack.push(Symbols::T_KW_INT);
+				break;
+			case 101:
+				stack.pop();
+				stack.push(Symbols::T_KW_DOUBLE);
+				break;
+			case 102:
+				stack.pop();
+				stack.push(Symbols::T_KW_STRING);
+				break;
+			case 103:
+				stack.pop();
+				stack.push(Symbols::T_KW_BOOL);
+				break;
+			case 104:
+				stack.pop();
+				stack.push(Symbols::T_KW_AUTO);
 				break;
 			default:
 				std::stringstream ss;

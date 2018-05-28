@@ -14,26 +14,43 @@ CParseTable::~CParseTable()
 void CParseTable::Init()
 {
 	m_mTable[Symbols::NT_CODE][Symbols::T_SEMICOL] = 1;
-	m_mTable[Symbols::NT_CODE][Symbols::T_VAR] = 1;
 	m_mTable[Symbols::NT_CODE][Symbols::T_WRITE] = 1;
 	m_mTable[Symbols::NT_CODE][Symbols::T_WRITELN] = 1;
 	m_mTable[Symbols::NT_CODE][Symbols::T_IDENT] = 1;
 	m_mTable[Symbols::NT_CODE][Symbols::T_END] = 1;
+	m_mTable[Symbols::NT_CODE][Symbols::T_KW_INT] = 1;
+	m_mTable[Symbols::NT_CODE][Symbols::T_KW_DOUBLE] = 1;
+	m_mTable[Symbols::NT_CODE][Symbols::T_KW_BOOL] = 1;
+	m_mTable[Symbols::NT_CODE][Symbols::T_KW_STRING] = 1;
+	m_mTable[Symbols::NT_CODE][Symbols::T_KW_AUTO] = 1;
 
 	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_SEMICOL] = 2;
-	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_VAR] = 2;
 	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_WRITE] = 2;
 	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_WRITELN] = 2;
 	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_IDENT] = 2;
 	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_END] = 3;
+	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_KW_INT] = 2;
+	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_KW_DOUBLE] = 2;
+	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_KW_BOOL] = 2;
+	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_KW_STRING] = 2;
+	m_mTable[Symbols::NT_COMMAND_LIST][Symbols::T_KW_AUTO] = 2;
 
 	m_mTable[Symbols::NT_COMMAND][Symbols::T_SEMICOL] = 7;
-	m_mTable[Symbols::NT_COMMAND][Symbols::T_VAR] = 4;
 	m_mTable[Symbols::NT_COMMAND][Symbols::T_WRITE] = 6;
 	m_mTable[Symbols::NT_COMMAND][Symbols::T_WRITELN] = 6;
 	m_mTable[Symbols::NT_COMMAND][Symbols::T_IDENT] = 5;
+	m_mTable[Symbols::NT_COMMAND][Symbols::T_KW_INT] = 4;
+	m_mTable[Symbols::NT_COMMAND][Symbols::T_KW_DOUBLE] = 4;
+	m_mTable[Symbols::NT_COMMAND][Symbols::T_KW_BOOL] = 4;
+	m_mTable[Symbols::NT_COMMAND][Symbols::T_KW_STRING] = 4;
+	m_mTable[Symbols::NT_COMMAND][Symbols::T_KW_AUTO] = 4;
 
-	m_mTable[Symbols::NT_DECLARATION][Symbols::T_VAR] = 8;
+	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_INT] = 8;
+	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_DOUBLE] = 8;
+	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_STRING] = 8;
+	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_BOOL] = 8;
+	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_AUTO] = 8;
+
 	m_mTable[Symbols::NT_DECLARATION_REST][Symbols::T_ASS] = 9;
 
 	m_mTable[Symbols::NT_ASSIGN][Symbols::T_IDENT] = 10;
@@ -77,6 +94,12 @@ void CParseTable::Init()
 
 	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 26;
 	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = 27;
+
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_INT] = 100;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_DOUBLE] = 101;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_STRING] = 102;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_BOOL] = 103;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_AUTO] = 104;
 }
 
 int CParseTable::operator()(Symbols nt, Symbols t) const

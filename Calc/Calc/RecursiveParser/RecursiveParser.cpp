@@ -76,7 +76,7 @@ void CRecursiveParser::Parse_Code()
 
 void CRecursiveParser::Parse_CommandList()
 {
-	while (Expect({Symbols::T_IDENT, Symbols::T_SEMICOL, Symbols::T_WRITE, Symbols::T_WRITELN, Symbols::T_VAR}))
+	while (Expect({Symbols::T_IDENT, Symbols::T_SEMICOL, Symbols::T_WRITE, Symbols::T_WRITELN, Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
 	{
 		Parse_Command();
 	}
@@ -91,7 +91,7 @@ void CRecursiveParser::Parse_CommandList()
 
 void CRecursiveParser::Parse_Command()
 {
-	if (Expect(Symbols::T_VAR))
+	if (Expect({Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
 	{
 		Parse_Declaration();
 	}
@@ -117,7 +117,8 @@ void CRecursiveParser::Parse_Command()
 
 void CRecursiveParser::Parse_Declaration()
 {
-	Accept(Symbols::T_VAR);
+	Parse_DataType();
+
 	Accept(Symbols::T_IDENT);
 
 	Parse_Declaration_Rest();
@@ -295,11 +296,45 @@ void CRecursiveParser::Parse_Function()
 	}
 }
 
+void CRecursiveParser::Parse_DataType()
+{
+	if (Expect(Symbols::T_KW_INT))
+	{
+		Accept(Symbols::T_KW_INT);
+	}
+	else if (Expect(Symbols::T_KW_DOUBLE))
+	{
+		Accept(Symbols::T_KW_DOUBLE);
+	}
+	else if (Expect(Symbols::T_KW_STRING))
+	{
+		Accept(Symbols::T_KW_STRING);
+	}
+	else if (Expect(Symbols::T_KW_BOOL))
+	{
+		Accept(Symbols::T_KW_BOOL);
+	}
+	else if (Expect(Symbols::T_KW_AUTO))
+	{
+		Accept(Symbols::T_KW_AUTO);
+	}
+	else
+	{
+		std::stringstream ss;
+		ss << "Unknown data type '" << SymbolAsString() << "' when parsing declaration.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
+	}
+}
+
 void CRecursiveParser::Parse_EmptyCommand()
 {
 	Accept(Symbols::T_SEMICOL);
 }
 
+
+//////////////////////////////////////////////////////////////////////////
+// Position
+//////////////////////////////////////////////////////////////////////////
 long CRecursiveParser::GetLine() const
 {
 	return m_pLexer->GetCurrentLine();

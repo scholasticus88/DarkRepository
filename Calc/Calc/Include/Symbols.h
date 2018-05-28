@@ -11,6 +11,7 @@ enum Symbols
 	NT_ASSIGN = 105,
 	NT_EMPTY = 106,
 	NT_FUNCTION = 107,
+	NT_DATA_TYPE = 108,
 
 	NT_EXPR = 500,
 	NT_EXPR_REST = 501,
@@ -38,7 +39,12 @@ enum Symbols
 
 
 	// keywords
-	T_VAR = 1500,
+	T_KW_STRING = 1500,
+	T_KW_INT = 1501,
+	T_KW_DOUBLE = 1502,
+	T_KW_BOOL = 1503,
+	T_KW_AUTO = 1504,
+
 
 	// end of file
 	T_END = 9999,
