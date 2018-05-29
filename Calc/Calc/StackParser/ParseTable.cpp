@@ -52,48 +52,57 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_DECLARATION][Symbols::T_KW_AUTO] = 8;
 
 	m_mTable[Symbols::NT_DECLARATION_REST][Symbols::T_ASS] = 9;
+	m_mTable[Symbols::NT_DECLARATION_REST][Symbols::T_SEMICOL] = 10;
 
-	m_mTable[Symbols::NT_ASSIGN][Symbols::T_IDENT] = 10;
+	m_mTable[Symbols::NT_RIGHT_SIDE][Symbols::T_LBRACK] = 13;
+	m_mTable[Symbols::NT_RIGHT_SIDE][Symbols::T_INTEGER] = 13;
+	m_mTable[Symbols::NT_RIGHT_SIDE][Symbols::T_DOUBLE] = 13;
+	m_mTable[Symbols::NT_RIGHT_SIDE][Symbols::T_IDENT] = 13;
+	m_mTable[Symbols::NT_RIGHT_SIDE][Symbols::T_STRING] = 14;
 
-	m_mTable[Symbols::NT_EMPTY][Symbols::T_SEMICOL] = 11;
+	m_mTable[Symbols::NT_ASSIGN][Symbols::T_IDENT] = 11;
 
-	m_mTable[Symbols::NT_EXPR][Symbols::T_LBRACK] = 12;
-	m_mTable[Symbols::NT_EXPR][Symbols::T_INTEGER] = 12;
-	m_mTable[Symbols::NT_EXPR][Symbols::T_DOUBLE] = 12;
-	m_mTable[Symbols::NT_EXPR][Symbols::T_IDENT] = 12;
+	m_mTable[Symbols::NT_EMPTY][Symbols::T_SEMICOL] = 12;
 
-	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_PLUS] = 13;
-	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_MINUS] = 14;
-	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_SEMICOL] = 15;
-	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_RBRACK] = 15;
+	m_mTable[Symbols::NT_EXPR][Symbols::T_LBRACK] = 22;
+	m_mTable[Symbols::NT_EXPR][Symbols::T_INTEGER] = 22;
+	m_mTable[Symbols::NT_EXPR][Symbols::T_DOUBLE] = 22;
+	m_mTable[Symbols::NT_EXPR][Symbols::T_IDENT] = 22;
 
-	m_mTable[Symbols::NT_MULTIPL][Symbols::T_LBRACK] = 16;
-	m_mTable[Symbols::NT_MULTIPL][Symbols::T_INTEGER] = 16;
-	m_mTable[Symbols::NT_MULTIPL][Symbols::T_DOUBLE] = 16;
-	m_mTable[Symbols::NT_MULTIPL][Symbols::T_IDENT] = 16;
+	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_PLUS] = 23;
+	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_MINUS] = 24;
+	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_SEMICOL] = 25;
+	m_mTable[Symbols::NT_EXPR_REST][Symbols::T_RBRACK] = 25;
 
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_MUL] = 17;
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_DIV] = 18;
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_PLUS] = 19;
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_MINUS] = 19;
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_SEMICOL] = 19;
-	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_RBRACK] = 19;
+	m_mTable[Symbols::NT_MULTIPL][Symbols::T_LBRACK] = 26;
+	m_mTable[Symbols::NT_MULTIPL][Symbols::T_INTEGER] = 26;
+	m_mTable[Symbols::NT_MULTIPL][Symbols::T_DOUBLE] = 26;
+	m_mTable[Symbols::NT_MULTIPL][Symbols::T_IDENT] = 26;
+
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_MUL] = 27;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_DIV] = 28;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_PLUS] = 29;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_MINUS] = 29;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_SEMICOL] = 29;
+	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_RBRACK] = 29;
 	
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_LBRACK] = 20;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_INTEGER] = 22;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_DOUBLE] = 23;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_IDENT] = 21;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_LBRACK] = 30;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_INTEGER] = 32;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_DOUBLE] = 33;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_IDENT] = 31;
 
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_PLUS] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_MINUS] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_MUL] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_DIV] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_SEMICOL] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_RBRACK] = 25;
-	m_mTable[Symbols::NT_FACTOR][Symbols::T_FACTOR] = 24;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_PLUS] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_MINUS] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_MUL] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_DIV] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_SEMICOL] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_RBRACK] = 35;
+	m_mTable[Symbols::NT_FACTOR][Symbols::T_FACTOR] = 34;
 
-	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 26;
-	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = 27;
+	m_mTable[Symbols::NT_STRING_EXPR][Symbols::T_STRING] = 36;
+
+	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 75;
+	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = 76;
 
 	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_INT] = 100;
 	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_DOUBLE] = 101;

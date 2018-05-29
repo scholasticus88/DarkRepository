@@ -12,6 +12,9 @@ enum Symbols
 	NT_EMPTY = 106,
 	NT_FUNCTION = 107,
 	NT_DATA_TYPE = 108,
+	NT_RIGHT_SIDE = 109,
+
+	NT_STRING_EXPR = 499,
 
 	NT_EXPR = 500,
 	NT_EXPR_REST = 501,
@@ -23,8 +26,6 @@ enum Symbols
 
 	// terminals
 	T_IDENT = 1000,
-	T_INTEGER = 1001,
-	T_DOUBLE = 1002,
 	T_PLUS = 1003,
 	T_MINUS = 1004,
 	T_MUL = 1005,
@@ -34,8 +35,16 @@ enum Symbols
 	T_LBRACK = 1009,
 	T_RBRACK = 1010,
 	T_FACTOR = 1011,
-	T_WRITE = 1012,
-	T_WRITELN = 1013,
+
+	T_INTEGER = 1101,
+	T_DOUBLE = 1102,
+	T_STRING = 1112,
+	T_BOOL = 1113,
+
+
+	// functions
+	T_WRITE = 1201,
+	T_WRITELN = 1202,
 
 
 	// keywords

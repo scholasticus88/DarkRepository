@@ -24,6 +24,7 @@ void CRecursiveParser::Accept(Symbols symbol)
 	ILexerTokenPtr pToken = m_pLexer->GetCurrentToken();
 	if (pToken->GetType() == symbol)
 	{
+		std::cout << pToken->GetType() << std::endl;
 		m_pLexer->Next();
 	}
 	else
@@ -76,7 +77,7 @@ void CRecursiveParser::Parse_Code()
 
 void CRecursiveParser::Parse_CommandList()
 {
-	while (Expect({Symbols::T_IDENT, Symbols::T_SEMICOL, Symbols::T_WRITE, Symbols::T_WRITELN, Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
+	while (Expect({Symbols::T_IDENT, Symbols::T_SEMICOL, Symbols::T_WRITE, Symbols::T_WRITELN, Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_STRING, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
 	{
 		Parse_Command();
 	}
@@ -91,7 +92,7 @@ void CRecursiveParser::Parse_CommandList()
 
 void CRecursiveParser::Parse_Command()
 {
-	if (Expect({Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
+	if (Expect({Symbols::T_KW_INT, Symbols::T_KW_DOUBLE, Symbols::T_KW_STRING, Symbols::T_KW_AUTO, Symbols::T_KW_BOOL}))
 	{
 		Parse_Declaration();
 	}
@@ -131,7 +132,7 @@ void CRecursiveParser::Parse_Assign()
 	Accept(Symbols::T_IDENT);
 	Accept(Symbols::T_ASS);
 
-	Parse_Expression();
+	Parse_RightSide();
 
 	Accept(Symbols::T_SEMICOL);
 }
@@ -142,8 +143,35 @@ void CRecursiveParser::Parse_Declaration_Rest()
 	{
 		Accept(Symbols::T_ASS);
 
+		Parse_RightSide();
+	}
+	else if (Expect(Symbols::T_SEMICOL))
+	{
+		// rule 10
+	}
+}
+
+void CRecursiveParser::Parse_RightSide()
+{
+	if (Expect({Symbols::T_LBRACK, Symbols::T_IDENT, Symbols::T_INTEGER, Symbols::T_DOUBLE}))
+	{
 		Parse_Expression();
 	}
+	else if (Expect(Symbols::T_STRING))
+	{
+		Parse_StringExpr();
+	}
+	else
+	{
+		std::stringstream ss;
+		ss << "Unexpected token '" << SymbolAsString() << "' when parsing right side of an assignment.";
+		throw CParserException(ss.str().c_str(), GetLine(), GetColumn());
+	}
+}
+
+void CRecursiveParser::Parse_StringExpr()
+{
+	Accept(Symbols::T_STRING);
 }
 
 void CRecursiveParser::Parse_Expression()

@@ -13,14 +13,20 @@ command:			declaration |
 // declaration command
 declaration:		data_type IDENT declaration_rest SEMICOL;
 
-declaration_rest:	ASS expr |
+declaration_rest:	ASS right_side |
 					;
+					
+right_side:			expr |
+					str_expr;
 
 // assignment command
-assign:				IDENT ASS expr SEMICOL;
+assign:				IDENT ASS right_side SEMICOL;
 
 // empty command
 empty:				SEMICOL;
+
+// string expressionstr_expr
+str_expr:	        STRING;
 
 // math expression
 expr:				multipl expr_rest;
@@ -50,11 +56,12 @@ data_type:			KW_STRING |
 					KW_INT |
 					KW_DOUBLE |
 					KW_BOOL |
-					KW_AUTO;	
+					KW_AUTO;
+
 
 
 PLUS:				'+';
-MINUS:				'-';	
+MINUS:				'-';
 
 MUL:				'*';
 DIV:				'/';	
@@ -67,6 +74,8 @@ ASS:				'=';
 SEMICOL:			';';
 
 FACTOR:				'!';
+
+APOSTOPH:			'"';
 
 KW_STRING:			'string';
 
@@ -88,11 +97,16 @@ DOUBLE:				INTEGRAL_PART DOT DECIMAL_PART;
 
 IDENT:				LETTER (LETTER | DIGIT)?;
 
+STRING:				APOSTOPH (LETTER | DIGIT | SPACE)+ APOSTOPH;
+
 
 
 
 fragment
 DOT	:				'.';
+
+fragment
+SPACE:				' ';
 
 fragment
 INTEGRAL_PART:		MARK? DIGIT+;

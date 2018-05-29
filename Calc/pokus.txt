@@ -1,2 +1,4 @@
 int x = 3 - 4 * 5;
 int y = 125 + 3 - 4 *( x! + 1 )!;
+string s = "ahoj";
+auto x = 15;

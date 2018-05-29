@@ -38,6 +38,8 @@ void CLexer::InitKeywords()
 	m_mKeywods["auto"] = Symbols::T_KW_AUTO;
 	m_mKeywods["write"] = Symbols::T_WRITE;
 	m_mKeywods["writeln"] = Symbols::T_WRITELN;
+	m_mKeywods["true"] = Symbols::T_BOOL;
+	m_mKeywods["false"] = Symbols::T_BOOL;
 }
 
 long CLexer::GetCurrentLine() const
@@ -101,6 +103,26 @@ ILexerTokenPtr CLexer::Next()
 	{
 		NextSymbol();
 		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_SEMICOL, lLine, lColumn));
+	}
+	else if (m_cSymbol == '"')
+	{
+		do
+		{
+			NextSymbol();
+		} while ((m_cSymbol != '"') && (m_cSymbol != -1));
+
+		if (m_cSymbol == '"')
+		{
+			NextSymbol();
+		}
+		else
+		{
+			std::stringstream ss;
+			ss << "string constant has not been terminated by \"'";
+			throw new CLexerException(ss.str().c_str(), lLine, lColumn);
+		}
+
+		return (m_pCurrentToken = std::make_shared<CLexToken>(Symbols::T_STRING, lLine, lColumn));
 	}
 	else if (isdigit(m_cSymbol))
 	{

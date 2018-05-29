@@ -28,6 +28,8 @@ private:
 	void Parse_Assign();
 	void Parse_Declaration();
 	void Parse_Declaration_Rest();
+	void Parse_RightSide();
+	void Parse_StringExpr();
 	void Parse_Expression();
 	void Parse_Multiple();
 	void Parse_ExpressionRest();

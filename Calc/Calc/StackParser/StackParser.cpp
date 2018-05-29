@@ -35,11 +35,9 @@ void CStackParser::Parse(const std::string& filename)
 				stack.pop();
 				pLexer->Next();
 			}
-			catch (CBaseException* e)
+			catch (CBaseException& e)
 			{
-				CParserException* e2 = new CParserException(e->GetMessage(), e->GetLine(), e->GetColumn());
-				delete e;
-				e = nullptr;
+				CParserException e2(e.GetMessage(), e.GetLine(), e.GetColumn());
 				throw e2;
 			}
 		}
@@ -86,93 +84,105 @@ void CStackParser::Parse(const std::string& filename)
 			case 9:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
-				stack.push(Symbols::NT_EXPR);
+				stack.push(Symbols::NT_RIGHT_SIDE);
 				stack.push(Symbols::T_ASS);
 				break;
 			case 10:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
-				stack.push(Symbols::NT_EXPR);
+				stack.push(Symbols::NT_RIGHT_SIDE);
 				stack.push(Symbols::T_ASS);
 				stack.push(Symbols::T_IDENT);
 				break;
-			case 11:
+			case 12:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
 				break;
-			case 12:
+			case 13:
+				stack.pop();
+				stack.push(Symbols::NT_EXPR);
+				break;
+			case 14:
+				stack.pop();
+				stack.push(Symbols::NT_STRING_EXPR);
+				break;
+			case 22:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				break;
-			case 13:
+			case 23:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				stack.push(Symbols::T_PLUS);
 				break;
-			case 14:
+			case 24:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				stack.push(Symbols::T_MINUS);
-				break;
-			case 15:
-				stack.pop();
-				break;
-			case 16:
-				stack.pop();
-				stack.push(Symbols::NT_MULTIPLE_REST);
-				stack.push(Symbols::NT_MULTIPLICANT);
-				break;
-			case 17:
-				stack.pop();
-				stack.push(Symbols::NT_MULTIPLE_REST);
-				stack.push(Symbols::NT_MULTIPLICANT);
-				stack.push(Symbols::T_MUL);
-				break;
-			case 18:
-				stack.pop();
-				stack.push(Symbols::NT_MULTIPLE_REST);
-				stack.push(Symbols::NT_MULTIPLICANT);
-				stack.push(Symbols::T_DIV);
-				break;
-			case 19:
-				stack.pop();
-				break;
-			case 20:
-				stack.pop();
-				stack.push(Symbols::NT_FACTOR);
-				stack.push(Symbols::T_RBRACK);
-				stack.push(Symbols::NT_EXPR);
-				stack.push(Symbols::T_LBRACK);
-				break;
-			case 21:
-				stack.pop();
-				stack.push(Symbols::NT_FACTOR);
-				stack.push(Symbols::T_IDENT);
-				break;
-			case 22:
-				stack.pop();
-				stack.push(Symbols::NT_FACTOR);
-				stack.push(Symbols::T_INTEGER);
-				break;
-			case 23:
-				stack.pop();
-				stack.push(Symbols::T_DOUBLE);
-				break;
-			case 24:
-				stack.pop();
-				stack.push(Symbols::T_FACTOR);
 				break;
 			case 25:
 				stack.pop();
 				break;
 			case 26:
 				stack.pop();
-				stack.push(Symbols::T_WRITE);
+				stack.push(Symbols::NT_MULTIPLE_REST);
+				stack.push(Symbols::NT_MULTIPLICANT);
 				break;
 			case 27:
+				stack.pop();
+				stack.push(Symbols::NT_MULTIPLE_REST);
+				stack.push(Symbols::NT_MULTIPLICANT);
+				stack.push(Symbols::T_MUL);
+				break;
+			case 28:
+				stack.pop();
+				stack.push(Symbols::NT_MULTIPLE_REST);
+				stack.push(Symbols::NT_MULTIPLICANT);
+				stack.push(Symbols::T_DIV);
+				break;
+			case 29:
+				stack.pop();
+				break;
+			case 30:
+				stack.pop();
+				stack.push(Symbols::NT_FACTOR);
+				stack.push(Symbols::T_RBRACK);
+				stack.push(Symbols::NT_EXPR);
+				stack.push(Symbols::T_LBRACK);
+				break;
+			case 31:
+				stack.pop();
+				stack.push(Symbols::NT_FACTOR);
+				stack.push(Symbols::T_IDENT);
+				break;
+			case 32:
+				stack.pop();
+				stack.push(Symbols::NT_FACTOR);
+				stack.push(Symbols::T_INTEGER);
+				break;
+			case 33:
+				stack.pop();
+				stack.push(Symbols::T_DOUBLE);
+				break;
+			case 34:
+				stack.pop();
+				stack.push(Symbols::T_FACTOR);
+				break;
+			case 35:
+				stack.pop();
+				break;
+			case 36:
+				stack.pop();
+				stack.push(Symbols::T_STRING);
+				break;
+			case 75:
+				stack.pop();
+				stack.push(Symbols::T_WRITE);
+				break;
+			case 76:
 				stack.pop();
 				stack.push(Symbols::T_WRITELN);
 				break;
