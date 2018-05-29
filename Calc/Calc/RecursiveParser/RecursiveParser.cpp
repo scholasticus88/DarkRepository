@@ -24,7 +24,6 @@ void CRecursiveParser::Accept(Symbols symbol)
 	ILexerTokenPtr pToken = m_pLexer->GetCurrentToken();
 	if (pToken->GetType() == symbol)
 	{
-		std::cout << pToken->GetType() << std::endl;
 		m_pLexer->Next();
 	}
 	else

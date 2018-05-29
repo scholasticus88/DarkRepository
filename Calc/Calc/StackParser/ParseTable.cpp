@@ -86,9 +86,9 @@ void CParseTable::Init()
 	m_mTable[Symbols::NT_MULTIPLE_REST][Symbols::T_RBRACK] = Rules::MULTIPL_REST_3;
 	
 	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_LBRACK] = Rules::MULTIPLICANT_1;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_INTEGER] = Rules::MULTIPLICANT_2;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_DOUBLE] = Rules::MULTIPLICANT_3;
-	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_IDENT] = Rules::MULTIPLICANT_4;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_IDENT] = Rules::MULTIPLICANT_2;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_INTEGER] = Rules::MULTIPLICANT_3;
+	m_mTable[Symbols::NT_MULTIPLICANT][Symbols::T_DOUBLE] = Rules::MULTIPLICANT_4;
 
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_FACTOR] = Rules::FACTOR_1;
 	m_mTable[Symbols::NT_FACTOR][Symbols::T_PLUS] = Rules::FACTOR_2;
@@ -100,14 +100,14 @@ void CParseTable::Init()
 
 	m_mTable[Symbols::NT_STRING_EXPR][Symbols::T_STRING] = Rules::STRING_1;
 
-	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = 75;
-	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = 76;
+	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITE] = Rules::FUNCTION_1;
+	m_mTable[Symbols::NT_FUNCTION][Symbols::T_WRITELN] = Rules::FUNCTION_2;
 
-	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_INT] = 100;
-	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_DOUBLE] = 101;
-	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_STRING] = 102;
-	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_BOOL] = 103;
-	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_AUTO] = 104;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_INT] = Rules::DATA_TYPE_1;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_DOUBLE] = Rules::DATA_TYPE_2;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_STRING] = Rules::DATA_TYPE_3;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_BOOL] = Rules::DATA_TYPE_4;
+	m_mTable[Symbols::NT_DATA_TYPE][Symbols::T_KW_AUTO] = Rules::DATA_TYPE_5;
 }
 
 int CParseTable::operator()(Symbols nt, Symbols t) const
