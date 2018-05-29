@@ -47,162 +47,165 @@ void CStackParser::Parse(const std::string& filename)
 
 			switch (iRule)
 			{
-			case 1:
+			case Rules::CODE:
 				stack.pop();
 				stack.push(Symbols::NT_COMMAND_LIST);
 				break;
-			case 2:
+			case Rules::COMMAND_LIST_1:
 				stack.pop();
 				stack.push(Symbols::NT_COMMAND_LIST);
 				stack.push(Symbols::NT_COMMAND);
 				break;
-			case 3:
+			case Rules::COMMAND_LIST_2:
 				stack.pop();
 				break;
-			case 4:
+			case Rules::COMMAND_1:
 				stack.pop();
 				stack.push(Symbols::NT_DECLARATION);
 				break;
-			case 5:
+			case Rules::COMMAND_2:
 				stack.pop();
 				stack.push(Symbols::NT_ASSIGN);
 				break;
-			case 6:
+			case Rules::COMMAND_3:
 				stack.pop();
 				stack.push(Symbols::NT_FUNCTION);
 				break;
-			case 7:
+			case Rules::COMMAND_4:
 				stack.pop();
 				stack.push(Symbols::NT_EMPTY);
 				break;
-			case 8:
+			case Rules::DECLARATION_1:
 				stack.pop();
 				stack.push(Symbols::NT_DECLARATION_REST);
 				stack.push(Symbols::T_IDENT);
 				stack.push(Symbols::NT_DATA_TYPE);
 				break;
-			case 9:
+			case Rules::DECLARATION_REST_1:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
 				stack.push(Symbols::NT_RIGHT_SIDE);
 				stack.push(Symbols::T_ASS);
 				break;
-			case 10:
+			case Rules::DECLARATION_REST_2:
+				stack.pop();
+				break;
+			case Rules::ASSIGN_1:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
 				stack.push(Symbols::NT_RIGHT_SIDE);
 				stack.push(Symbols::T_ASS);
 				stack.push(Symbols::T_IDENT);
 				break;
-			case 12:
+			case Rules::EMPTY:
 				stack.pop();
 				stack.push(Symbols::T_SEMICOL);
 				break;
-			case 13:
+			case Rules::RIGHT_SIDE_1:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR);
 				break;
-			case 14:
+			case Rules::RIGHT_SIDE_2:
 				stack.pop();
 				stack.push(Symbols::NT_STRING_EXPR);
 				break;
-			case 22:
+			case Rules::EXPR:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				break;
-			case 23:
+			case Rules::EXPR_REST_1:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				stack.push(Symbols::T_PLUS);
 				break;
-			case 24:
+			case Rules::EXPR_REST_2:
 				stack.pop();
 				stack.push(Symbols::NT_EXPR_REST);
 				stack.push(Symbols::NT_MULTIPL);
 				stack.push(Symbols::T_MINUS);
 				break;
-			case 25:
+			case Rules::EXPR_REST_3:
 				stack.pop();
 				break;
-			case 26:
+			case Rules::MULTIPL:
 				stack.pop();
 				stack.push(Symbols::NT_MULTIPLE_REST);
 				stack.push(Symbols::NT_MULTIPLICANT);
 				break;
-			case 27:
+			case Rules::MULTIPL_REST_1:
 				stack.pop();
 				stack.push(Symbols::NT_MULTIPLE_REST);
 				stack.push(Symbols::NT_MULTIPLICANT);
 				stack.push(Symbols::T_MUL);
 				break;
-			case 28:
+			case Rules::MULTIPL_REST_2:
 				stack.pop();
 				stack.push(Symbols::NT_MULTIPLE_REST);
 				stack.push(Symbols::NT_MULTIPLICANT);
 				stack.push(Symbols::T_DIV);
 				break;
-			case 29:
+			case Rules::MULTIPL_REST_3:
 				stack.pop();
 				break;
-			case 30:
+			case Rules::MULTIPLICANT_1:
 				stack.pop();
 				stack.push(Symbols::NT_FACTOR);
 				stack.push(Symbols::T_RBRACK);
 				stack.push(Symbols::NT_EXPR);
 				stack.push(Symbols::T_LBRACK);
 				break;
-			case 31:
+			case Rules::MULTIPLICANT_2:
 				stack.pop();
 				stack.push(Symbols::NT_FACTOR);
 				stack.push(Symbols::T_IDENT);
 				break;
-			case 32:
+			case Rules::MULTIPLICANT_3:
 				stack.pop();
 				stack.push(Symbols::NT_FACTOR);
 				stack.push(Symbols::T_INTEGER);
 				break;
-			case 33:
+			case Rules::MULTIPLICANT_4:
 				stack.pop();
 				stack.push(Symbols::T_DOUBLE);
 				break;
-			case 34:
+			case Rules::FACTOR_1:
 				stack.pop();
 				stack.push(Symbols::T_FACTOR);
 				break;
-			case 35:
+			case Rules::FACTOR_2:
 				stack.pop();
 				break;
-			case 36:
+			case Rules::STRING_1:
 				stack.pop();
 				stack.push(Symbols::T_STRING);
 				break;
-			case 75:
+			case Rules::FUNCTION_1:
 				stack.pop();
 				stack.push(Symbols::T_WRITE);
 				break;
-			case 76:
+			case Rules::FUNCTION_2:
 				stack.pop();
 				stack.push(Symbols::T_WRITELN);
 				break;
-			case 100:
+			case Rules::DATA_TYPE_1:
 				stack.pop();
 				stack.push(Symbols::T_KW_INT);
 				break;
-			case 101:
+			case Rules::DATA_TYPE_2:
 				stack.pop();
 				stack.push(Symbols::T_KW_DOUBLE);
 				break;
-			case 102:
+			case Rules::DATA_TYPE_3:
 				stack.pop();
 				stack.push(Symbols::T_KW_STRING);
 				break;
-			case 103:
+			case Rules::DATA_TYPE_4:
 				stack.pop();
 				stack.push(Symbols::T_KW_BOOL);
 				break;
-			case 104:
+			case Rules::DATA_TYPE_5:
 				stack.pop();
 				stack.push(Symbols::T_KW_AUTO);
 				break;
