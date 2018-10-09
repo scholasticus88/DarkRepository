@@ -13,7 +13,7 @@ SET ANTLR_JAR="antlr-4.7.1-complete.jar"
 SET ANTLR="C:\Program Files\Java\libs\antlr-4.7.1-complete.jar"
 SET CLASSPATH=.;%ANTLR%;%CLASSPATH%
 SET TESTRIG=org.antlr.v4.gui.TestRig
-SET LANG="Java"
+SET LANG="CSharp"
 
 SET PROJECT=%1
 SET OUTDIR="%PROJECT%\Genegated"
@@ -48,7 +48,7 @@ IF EXIST %OUTDIR_BIN% (
 )
 mkdir %OUTDIR_BIN%
 
-java -jar %ANTLR% %PROJECT%\%GRAMMAR% -Dlanguage=%LANG% -no-listener -visitor -o %OUTDIR_CODE%
+java -jar %ANTLR% %PROJECT%\%GRAMMAR% -Dlanguage=%LANG% -visitor -o %OUTDIR_CODE%
 copy %OUTDIR_CODE%\%PROJECT%\*.* %OUTDIR_CODE%
 rmdir %OUTDIR_CODE%\%PROJECT% /S /Q
 
